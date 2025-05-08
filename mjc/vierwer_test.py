@@ -3,14 +3,14 @@ import time
 import mujoco
 import mujoco.viewer
 
-model = mujoco.MjModel.from_xml_path("test/mjc/align_hole.xml")
+model = mujoco.MjModel.from_xml_path("mjc/align_hole.xml")
 data = mujoco.MjData(model)
 
 with mujoco.viewer.launch_passive(model, data) as viewer:
     # Close the viewer automatically after 10 wall-seconds.
     start = time.time()
 
-    while viewer.is_running() and time.time() - start < 10:
+    while viewer.is_running():  # and time.time() - start < 10:
         step_start = time.time()
 
         # mj_step can be replaced with code that also evaluates

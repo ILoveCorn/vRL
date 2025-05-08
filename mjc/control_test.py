@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import mujoco.viewer
 
-model = mujoco.MjModel.from_xml_path("test/mjc/align_hole.xml")
+model = mujoco.MjModel.from_xml_path("mjc/align_hole.xml")
 data = mujoco.MjData(model)
 
 with mujoco.viewer.launch_passive(model, data) as viewer:

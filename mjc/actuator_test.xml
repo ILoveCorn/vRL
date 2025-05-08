@@ -13,11 +13,8 @@
         <!-- ground -->
         <!-- <geom name="ground" type="plane" size=".5 .5 .01" /> -->
 
-        <!-- column -->
-        <!-- <geom type="cylinder" size="0.05 0.1" /> -->
-
-        <!-- arm -->
-        <body name="camera" pos="0 0 0.1" gravcomp="1">
+        <!-- camera -->
+        <!-- <body name="camera" pos="0 0 0.1" gravcomp="1">
             <light directional="true" />
             <geom type="box" pos="0 0 0" size="0.01 0.01 0.01" rgba="1 0.64 0 1" />
             <camera name="camera" fovy="30" />
@@ -26,16 +23,24 @@
             <joint name="camera_z" type="slide" axis="0 0 1" />
             <joint name="camera_yaw" type="hinge" axis="0 1 0" />
             <joint name="camera_pitch" type="hinge" axis="1 0 0" />
-        </body>
+        </body> -->
+
+        <!-- arm -->
+        <body>
+            <geom type="cylinder" size="0.05" fromto="0 0 0 0.2 0 0" />
+            <joint name="j0" type="hinge" axis="0 0 1" />
+        </body> 
+
     </worldbody>
 
     <!-- actuator -->
     <actuator>
-        <position name="camera_x" joint="camera_x" />
+        <!-- <position name="camera_x" joint="camera_x" />
         <position name="camera_y" joint="camera_y" />
         <position name="camera_z" joint="camera_z" />
         <position name="camera_yaw" joint="camera_yaw" />
-        <position name="camera_pitch" joint="camera_pitch" />
+        <position name="camera_pitch" joint="camera_pitch" /> -->
+        <position name="j0" joint="j0" />
     </actuator>
 
 </mujoco>
