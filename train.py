@@ -10,28 +10,36 @@ from wandb.integration.sb3 import WandbCallback
 
 config = {
     "policy_type": "CnnPolicy",
-    "total_timesteps": 200_0000,
+    "total_timesteps": 1000_0000,
     "env_id": "AlignHole-v0",
 }
 run = wandb.init(
     project="vRL",
-    name="SAC-200w",
+    name="PPO-1000w-Linear",
     config=config,
     sync_tensorboard=True,  # auto-upload sb3's tensorboard metrics
 )
 
-model = SAC(
+# model = SAC(
+#     config["policy_type"],
+#     config["env_id"],
+#     verbose=1,
+#     tensorboard_log=f"runs/{run.id}",
+#     buffer_size=8_0000,
+# )
+
+model = PPO(
     config["policy_type"],
     config["env_id"],
     verbose=1,
     tensorboard_log=f"runs/{run.id}",
-    buffer_size=8_0000,
 )
+
 model.learn(
     total_timesteps=config["total_timesteps"], callback=WandbCallback(verbose=2)
 )
 
-model.save("./model/SAC_200w_Greyscale")
+model.save("./model/PPO_1000w_Linear")
 
 run.finish()
 

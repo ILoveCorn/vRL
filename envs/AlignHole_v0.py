@@ -31,7 +31,7 @@ class AlignHoleEnv(Env, utils.EzPickle):
         display_ui: bool = False,
         render_mode: Union[None, str] = "rgb_array",
         scene_file: str = "hole_alignment.ttt",
-        image_size: int = 512,
+        image_size: int = 256,
         hole_axis: list = [0, -1, 1],
         orientation_err_weight: float = 1,
         max_position_action: float = 0.1,
@@ -126,8 +126,15 @@ class AlignHoleEnv(Env, utils.EzPickle):
         orientation_err = self._orientation_err()
 
         # calculate reward
-        # reward = -position_err - self.orientation_reward_weight * orientation_err
-        reward = np.exp(-position_err - self.orientation_err_weight * orientation_err)
+        # linear reward
+        reward = -position_err - self.orientation_err_weight * orientation_err
+
+        # exponential reward
+        # reward = np.exp(reward)
+
+        # sparse reward
+        # if -reward <= 10:
+        #     reward += 10
 
         # terminate if hole is outside the visible cone
         terminated = position_err >= self.fov / 2
@@ -179,7 +186,7 @@ class AlignHoleEnv(Env, utils.EzPickle):
         # random camera pose [x, y, z, rx, ry] in spherical coordinates
         r = self.np_random.uniform(low=0.05, high=0.2)
         theta = self.np_random.uniform(low=0, high=2 * np.pi)
-        phi = self.np_random.uniform(low=0, high=60 / 180 * np.pi)
+        phi = self.np_random.uniform(low=0, high=22.5 / 180 * np.pi)
         rz_cam = -np.array(
             [np.sin(phi) * np.cos(theta), np.sin(phi) * np.sin(theta), np.cos(phi)]
         )
