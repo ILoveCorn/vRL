@@ -1,3 +1,7 @@
+.vscode/
+config/
+media/
+mjc/
 model/
 runs/
 wandb/
