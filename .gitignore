@@ -3,6 +3,5 @@ config/
 media/
 mjc/
 model/
-PyRep/
 runs/
 wandb/
