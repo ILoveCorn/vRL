@@ -45,7 +45,7 @@ env = AlignHoleEnv(display_ui=False)
 img1s = []
 
 # reset & step
-for i in range(1):
+for i in range(5):
     obs1, info = env.reset()
     img1 = env.img
 
@@ -79,4 +79,4 @@ env.close()
 concatenated_img1s = np.concatenate(img1s, axis=1)
 
 # save the concatenated image
-# Image.fromarray(concatenated_img1s.astype(np.uint8)).save("media/reset_demo.png")
+Image.fromarray(concatenated_img1s.astype(np.uint8)).save("media/reset_demo.png")

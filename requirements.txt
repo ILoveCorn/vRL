@@ -1,0 +1,6 @@
+gymnasium==1.1.1
+matplotlib==3.10.3
+numpy==2.2.5
+Pillow==11.2.1
+pyrep==4.1.0.3
+stable_baselines3==2.6.0
