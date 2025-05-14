@@ -1,4 +1,4 @@
-# ELEG5491 Course Project
+# End-to-end Monocular Camera-to-hole Alignment via Deep RL
 
 ## Overview
 ![Overview](./media/overview.png)
