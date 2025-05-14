@@ -10,12 +10,12 @@ from wandb.integration.sb3 import WandbCallback
 
 config = {
     "policy_type": "CnnPolicy",
-    "total_timesteps": 1000_0000,
+    "total_timesteps": 1000,
     "env_id": "AlignHole-v0",
 }
 run = wandb.init(
     project="vRL",
-    name="PPO-1000w-Linear",
+    name="PPO-1000-Linear-Penalty-50",
     config=config,
     sync_tensorboard=True,  # auto-upload sb3's tensorboard metrics
 )
@@ -39,7 +39,7 @@ model.learn(
     total_timesteps=config["total_timesteps"], callback=WandbCallback(verbose=2)
 )
 
-model.save("./model/PPO_1000w_Linear")
+# model.save("./model/PPO_200w_Linear_Penalty_50")
 
 run.finish()
 

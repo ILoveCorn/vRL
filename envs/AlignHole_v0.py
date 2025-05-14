@@ -139,6 +139,10 @@ class AlignHoleEnv(Env, utils.EzPickle):
         # terminate if hole is outside the visible cone
         terminated = position_err >= self.fov / 2
 
+        # add penalty for termination
+        if terminated:
+            reward -= 50
+
         # other info
         info = {"Position error": position_err, "Orientation error": orientation_err}
 
@@ -184,7 +188,7 @@ class AlignHoleEnv(Env, utils.EzPickle):
         super().reset(seed=seed)
 
         # random camera pose [x, y, z, rx, ry] in spherical coordinates
-        r = self.np_random.uniform(low=0.05, high=0.2)
+        r = self.np_random.uniform(low=0.05, high=0.10)
         theta = self.np_random.uniform(low=0, high=2 * np.pi)
         phi = self.np_random.uniform(low=0, high=22.5 / 180 * np.pi)
         rz_cam = -np.array(
